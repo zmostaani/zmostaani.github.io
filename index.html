@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zohreh Mostaani — Machine Learning &amp; AI Scientist</title>
+<meta name="description" content="Zohreh Mostaani — Machine Learning and AI Scientist. ML pipelines across radar, speech, and physiological time series. EPFL PhD, 15+ publications." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#fbf9f3;
+    --paper-2:#f4f0e6;
+    --ink:#1c1b17;
+    --ink-soft:#56524a;
+    --line:#e2dccd;
+    --teal:#0f6b62;
+    --teal-deep:#0a4f48;
+    --amber:#c4622d;
+    --shadow:18px 18px 0 rgba(15,107,98,.08);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesk",sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(251,249,243,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, background .3s;
+  }
+  nav.scrolled{border-color:var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:16px 28px}
+  .nav-name{font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .nav-links{display:flex;gap:30px}
+  .nav-links a{font-size:.9rem;color:var(--ink-soft);position:relative;transition:color .2s}
+  .nav-links a:hover{color:var(--teal)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--teal);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--ink)}
+  @media(max-width:720px){
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line)}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:14px 28px;border-top:1px solid var(--line)}
+    .nav-toggle{display:block}
+  }
+
+  /* ---------- HERO ---------- */
+  header{position:relative;padding:170px 0 90px;overflow:hidden}
+  .wave-bg{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none}
+  .hero{position:relative;z-index:1}
+  .hero .mono{opacity:0;animation:rise .7s ease forwards .1s}
+  .hero h1{
+    font-family:"Fraunces",serif;font-weight:600;
+    font-size:clamp(2.8rem,8vw,5.6rem);
+    line-height:.98;letter-spacing:-.03em;margin:18px 0 8px;
+    opacity:0;animation:rise .7s ease forwards .22s;
+  }
+  .hero h1 em{font-style:italic;color:var(--teal)}
+  .hero-role{
+    font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:500;color:var(--ink-soft);
+    max-width:680px;opacity:0;animation:rise .7s ease forwards .34s;
+  }
+  .hero-role b{color:var(--ink);font-weight:600}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;opacity:0;animation:rise .7s ease forwards .46s}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line);background:rgba(255,255,255,.5);
+    padding:9px 16px;border-radius:50px;font-size:.9rem;font-weight:500;
+    transition:transform .2s, border-color .2s, color .2s;
+  }
+  .pill:hover{transform:translateY(-2px);border-color:var(--teal);color:var(--teal)}
+  .pill.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .pill.solid:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---------- HERO PHOTO ---------- */
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:50px;align-items:center}
+  .hero-photo{justify-self:end;opacity:0;animation:rise .7s ease forwards .5s}
+  .hero-photo img{
+    width:240px;height:290px;object-fit:cover;border-radius:18px;
+    border:1px solid var(--line);
+    box-shadow:16px 16px 0 rgba(15,107,98,.12);
+    display:block;
+  }
+  @media(max-width:760px){
+    .hero-grid{grid-template-columns:1fr;gap:26px}
+    .hero-photo{justify-self:start;order:-1}
+    .hero-photo img{width:120px;height:120px;border-radius:50%;box-shadow:8px 8px 0 rgba(15,107,98,.12)}
+  }
+
+  /* ---------- STATS ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:70px}
+  .stat{padding:34px 20px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-family:"Fraunces",serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:var(--teal);line-height:1}
+  .stat .lbl{font-size:.82rem;color:var(--ink-soft);margin-top:8px}
+  @media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:80px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:46px}
+  .sec-head h2{font-family:"Fraunces",serif;font-size:clamp(1.8rem,4vw,2.7rem);font-weight:600;letter-spacing:-.02em}
+  .sec-num{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--amber)}
+
+  .lead{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:760px;color:var(--ink);line-height:1.7}
+  .lead .hl{background:linear-gradient(transparent 62%, rgba(15,107,98,.18) 62%)}
+
+  /* ---------- HIGHLIGHT CARDS ---------- */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px;
+    transition:transform .25s, box-shadow .25s, border-color .25s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--teal)}
+  .card .tag{font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+  .card h3{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:600;margin:12px 0 10px;line-height:1.2}
+  .card p{color:var(--ink-soft);font-size:.96rem}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative;margin-left:6px}
+  .job{position:relative;padding:0 0 42px 38px;border-left:2px solid var(--line)}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:"";position:absolute;left:-8px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--teal)}
+  .job .when{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--ink-soft);letter-spacing:.04em}
+  .job h3{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:600;margin:6px 0 2px}
+  .job .org{font-weight:600;color:var(--teal);font-size:1rem}
+  .job .org span{color:var(--ink-soft);font-weight:400}
+  .job .desc{color:var(--ink);font-style:italic;margin:8px 0 6px;font-size:.96rem}
+  .job ul{list-style:none;margin-top:8px}
+  .job li{position:relative;padding-left:20px;margin-bottom:7px;color:var(--ink-soft);font-size:.95rem}
+  .job li::before{content:"▸";position:absolute;left:0;color:var(--teal)}
+
+  /* ---------- EDUCATION ---------- */
+  .edu{display:grid;gap:0;border-top:1px solid var(--line)}
+  .edu-row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:24px 4px;border-bottom:1px solid var(--line);transition:padding-left .25s, background .25s}
+  .edu-row:hover{padding-left:14px;background:var(--paper-2)}
+  .edu-row .deg{font-family:"Fraunces",serif;font-size:1.25rem;font-weight:600}
+  .edu-row .school{color:var(--ink-soft);font-size:.95rem}
+  .edu-row .yr{font-family:"JetBrains Mono",monospace;font-size:.85rem;color:var(--teal);white-space:nowrap}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  @media(max-width:720px){.skill-grid{grid-template-columns:1fr}}
+  .skill-block h4{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--paper-2);border:1px solid var(--line);padding:6px 13px;border-radius:7px;font-size:.86rem;font-weight:500;transition:background .2s,color .2s}
+  .chip:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+  /* ---------- TALKS ---------- */
+  .talks{display:flex;flex-wrap:wrap;gap:10px}
+  .talk{border:1px solid var(--line);border-radius:9px;padding:14px 18px;font-size:.9rem;flex:1 1 280px;transition:border-color .2s}
+  .talk:hover{border-color:var(--teal)}
+  .talk b{display:block;font-family:"Fraunces",serif;font-size:1.02rem;margin-bottom:2px}
+  .talk span{color:var(--ink-soft);font-size:.83rem}
+
+  /* ---------- PUBLICATIONS ---------- */
+  .pubs{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .pub{padding:22px 4px;border-bottom:1px solid var(--line);transition:padding-left .25s, background .25s}
+  .pub:hover{padding-left:14px;background:var(--paper-2)}
+  .pub .venue{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}
+  .pub .pt{font-family:"Fraunces",serif;font-size:1.12rem;font-weight:600;line-height:1.3;margin:5px 0 4px;display:block;color:var(--ink);transition:color .2s}
+  .pub a.pt:hover{color:var(--teal)}
+  .pub .auth{font-size:.88rem;color:var(--ink-soft)}
+  .pub .auth b{color:var(--ink);font-weight:600}
+  .pub-foot{margin-top:18px;font-size:.92rem;color:var(--ink-soft)}
+  .pub-foot a{color:var(--teal);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s}
+  .pub-foot a:hover{border-color:var(--teal)}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--ink);color:var(--paper);border-radius:20px;padding:64px 44px;text-align:center;position:relative;overflow:hidden}
+  .contact h2{font-family:"Fraunces",serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.05}
+  .contact p{color:rgba(251,249,243,.7);max-width:520px;margin:16px auto 30px;font-size:1.05rem}
+  .contact .links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .contact .links a{background:rgba(251,249,243,.08);border:1px solid rgba(251,249,243,.2);color:var(--paper);padding:13px 24px;border-radius:50px;font-weight:500;transition:background .2s,transform .2s}
+  .contact .links a:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
+  .contact .links a.primary{background:var(--paper);color:var(--ink)}
+  .contact .links a.primary:hover{background:var(--teal);color:#fff}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--ink-soft);font-size:.85rem}
+  footer .mono{color:var(--ink-soft);display:block;margin-top:8px}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .wave-line{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 3.5s ease forwards .4s}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .wave-line{stroke-dashoffset:0}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name">Zohreh Mostaani</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <svg class="wave-bg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="wave-line" fill="none" stroke="#0f6b62" stroke-width="1.4" opacity="0.5"
+      d="M0,320 Q40,200 80,320 T160,320 Q200,120 240,320 T320,320 Q360,260 400,320 T480,320 Q520,80 560,320 T640,320 Q680,240 720,320 T800,320 Q840,160 880,320 T960,320 Q1000,40 1040,320 T1120,320 Q1160,260 1200,320"/>
+    <path class="wave-line" fill="none" stroke="#c4622d" stroke-width="1" opacity="0.35" style="animation-delay:.9s"
+      d="M0,400 Q60,360 120,400 T240,400 Q300,300 360,400 T480,400 Q540,340 600,400 T720,400 Q780,280 840,400 T960,400 Q1020,360 1080,400 T1200,400"/>
+  </svg>
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="mono">Machine Learning &amp; AI Scientist · Switzerland</span>
+        <h1>Zohreh<br><em>Mostaani</em></h1>
+        <p class="hero-role">I build and validate <b>machine-learning pipelines</b> end to end — from data acquisition and signal preprocessing to modeling, experimentation, and rigorous evaluation — mainly on <b>speech and physiological signals</b>, and also image, video, and radar data.</p>
+        <div class="hero-meta">
+          <a class="pill solid" href="mailto:mostaani.zohreh@gmail.com">✉ Email me</a>
+          <a class="pill" href="https://www.linkedin.com/in/zohreh-mostaani/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="pill" href="https://scholar.google.com/citations?user=t2VMpU8AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="pill" href="https://github.com/zmostaani" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <!-- PHOTO: upload your headshot to the repo as photo.jpg (or change the filename below).
+           If no file is present, this block hides itself automatically. -->
+      <div class="hero-photo">
+        <img src="photo.jpg" alt="Zohreh Mostaani" onerror="this.closest('.hero-photo').style.display='none'">
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">7+</div><div class="lbl">years building ML</div></div>
+      <div class="stat"><div class="num">15+</div><div class="lbl">publications</div></div>
+      <div class="stat"><div class="num">~600</div><div class="lbl">citations</div></div>
+      <div class="stat"><div class="num">9</div><div class="lbl">h-index</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2>About</h2></div>
+    <p class="lead reveal">I'm a machine learning and signal-processing specialist with 7+ years <span class="hl">building ML pipelines end to end</span> — data acquisition and curation, signal preprocessing, modeling, experimentation, and <span class="hl">rigorous evaluation and validation</span>. I've applied this mainly to speech and physiological signals, and also to image, video, and radar data — on problems ranging from estimating physiological signals from speech to face biometrics and the automated evaluation of generative speech. I work in Python with PyTorch, TensorFlow, and scikit-learn, ship with Docker, and have created specialized speech, physiological, and face/voice datasets. Alongside the modeling, I've mentored Master's students and review for IEEE/ACM Transactions on Audio, Speech, and Language Processing.</p>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2>Selected work</h2></div>
+    <div class="cards">
+      <div class="card reveal">
+        <span class="tag">Generative speech · Evaluation</span>
+        <h3>Automated TTS evaluation framework</h3>
+        <p>Benchmarked 9 text-to-speech voices across 15 domains into a single quality score from intelligibility, audio quality, speaker similarity, and synthesis success — cutting reliance on manual listening tests. Validated against a human ranking study, with automatic and human rankings agreeing on the top-3 and bottom-2 voices.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Speech · Deep learning</span>
+        <h3>Breathing signals from raw speech</h3>
+        <p>Pioneered deep-learning models that estimate breathing signals directly from raw speech waveforms in TensorFlow, achieving a 25% reduction in input lag compared with spectral-based models.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Radar · Time series</span>
+        <h3>Non-contact vital-sign monitoring</h3>
+        <p>Designed and implemented algorithms for noncontact human detection and vital-sign monitoring from radar signals.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Speech · Health</span>
+        <h3>Health models from speech</h3>
+        <p>Developed models for COVID-19 detection, emotion recognition, heart-rate estimation, and hypoglycemia detection in diabetic patients — working from speech signals with both data-driven and hand-crafted features in PyTorch and scikit-learn.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Biometrics · Computer vision</span>
+        <h3>Face biometrics &amp; anti-spoofing</h3>
+        <p>Investigated presentation attacks on CNN-based face-recognition systems, including makeup-induced spoofing, and collected and curated two large face-biometric datasets from 100+ participants — including acquisition protocol design and attack generation.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Hackathon · EPFL · 2025</span>
+        <h3>AI for children's reading assessment</h3>
+        <p>At the Lemanic Life Science Hackathon at EPFL, built a prototype with a multidisciplinary team to help clinicians assess children's reading — automatically identifying the word a child attempts to say and whether it was pronounced correctly. Idea to working prototype in three days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2>Experience</h2></div>
+    <div class="timeline">
+
+      <div class="job reveal">
+        <div class="when">Jan 2026 — Present</div>
+        <h3>Research Engineer</h3>
+        <div class="org">AGIGO AG <span>· Zürich, Switzerland</span></div>
+        <div class="desc">Generative speech evaluation for an agentic, LLM-driven conversational AI platform.</div>
+        <ul>
+          <li>Built an automated framework to benchmark 9 TTS voices across 15 domains into a single quality score, validated against a human ranking study.</li>
+          <li>Designed a diagnostic report that localizes TTS errors via an ASR round-trip, classifying mismatches by severity for fast debugging.</li>
+          <li>Deployed the framework as a Dockerized microservice with HTTP endpoints, integrated into the team's model-evaluation workflow.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">Jul 2025 — Oct 2025</div>
+        <h3>Machine Learning Engineer — BNF Project</h3>
+        <div class="org">Sleepiz AG <span>· Zürich, Switzerland</span></div>
+        <div class="desc">Radar signal processing and ML pipeline.</div>
+        <ul>
+          <li>Designed and implemented algorithms for noncontact human detection and vital-sign monitoring using radar signals.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">Feb 2020 — Dec 2024</div>
+        <h3>Research Assistant — Speech &amp; Audio Processing</h3>
+        <div class="org">Idiap Research Institute <span>· Martigny, Switzerland</span></div>
+        <div class="desc">Integrating physiological signals into speech-processing technologies with machine and deep learning.</div>
+        <ul>
+          <li>Pioneered deep-learning models to estimate breathing signals from raw speech (TensorFlow), with a 25% reduction in input lag vs. spectral models.</li>
+          <li>Developed models for COVID-19 detection, presentation-attack detection, emotion recognition, hypoglycemia detection, and heart-rate estimation.</li>
+          <li>Compiled two databases of simultaneous speech and physiological recordings from 30+ participants.</li>
+          <li>Mentored two Master's students through internships and theses; teaching assistant for Machine Learning and Introduction to Speech Processing.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">Apr 2019 — Jan 2020</div>
+        <h3>Research &amp; Development Engineer — Biometrics, Security &amp; Privacy</h3>
+        <div class="org">Idiap Research Institute <span>· Martigny, Switzerland</span></div>
+        <ul>
+          <li>Investigated presentation attacks on CNN-based face-recognition systems, including makeup-induced spoofing.</li>
+          <li>Documented, tested, and extended the BEAT framework for defining, executing, and comparing data-driven workflows (Python, Django, Sphinx).</li>
+          <li>Devised a protocol for collecting face-biometric data in automotive environments.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">Jun 2016 — Mar 2019</div>
+        <h3>Research Internships</h3>
+        <div class="org">Idiap Research Institute <span>· Martigny, Switzerland</span></div>
+        <ul>
+          <li>Collected two large face-biometric datasets from 100+ participants, including acquisition protocol design and presentation-attack generation.</li>
+          <li>Integrated an ASR system into a web framework using Docker and a RESTful API.</li>
+          <li>Implemented a CNN for gaze estimation in Theano.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">Feb 2012 — Jan 2015</div>
+        <h3>Research Assistant</h3>
+        <div class="org">Özyeğin University <span>· Istanbul, Turkey</span></div>
+        <ul>
+          <li>Improved signal-to-noise ratio in free-space optical communication by 50% using multiple relays.</li>
+          <li>Ran assignments, labs, and exams for Physics, Mathematics, Linear Algebra, and Wireless Communications.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2>Selected publications</h2></div>
+    <div class="pubs">
+
+      <div class="pub reveal">
+        <span class="venue">Neural Networks · 2021</span>
+        <a class="pt" href="https://doi.org/10.1016/j.neunet.2021.03.029" target="_blank" rel="noopener">Deep Learning Architectures for Estimating Breathing Signal and Respiratory Parameters from Speech Recordings</a>
+        <div class="auth">V. S. Nallanthighal, <b>Z. Mostaani</b>, A. Härmä, H. Strik, M. Magimai-Doss</div>
+      </div>
+
+      <div class="pub reveal">
+        <span class="venue">ICASSP · 2021</span>
+        <a class="pt" href="https://doi.org/10.1109/ICASSP39728.2021.9414756" target="_blank" rel="noopener">On the Relationship Between Speech-Based Breathing Signal Prediction Evaluation Measures and Breathing Parameters Estimation</a>
+        <div class="auth"><b>Z. Mostaani</b>, V. S. Nallanthighal, A. Härmä, H. Strik, M. Magimai-Doss</div>
+      </div>
+
+      <div class="pub reveal">
+        <span class="venue">INTERSPEECH · 2022</span>
+        <a class="pt" href="https://doi.org/10.21437/Interspeech.2022-10271" target="_blank" rel="noopener">On Breathing Pattern Information in Synthetic Speech</a>
+        <div class="auth"><b>Z. Mostaani</b>, M. Magimai-Doss</div>
+      </div>
+
+      <div class="pub reveal">
+        <span class="venue">Diabetes Care · 2026</span>
+        <a class="pt" href="https://doi.org/10.2337/dc25-1680" target="_blank" rel="noopener">Listening to Hypoglycemia: Voice as a Biomarker for Detection of a Medical Emergency Using Machine Learning</a>
+        <div class="auth">V. Lehmann, M. Hilpert, <b>Z. Mostaani</b>, S. Hovsepyan, E. Wallace, C. Verzat, et al.</div>
+      </div>
+
+      <div class="pub reveal">
+        <span class="venue">IEEE Trans. Information Forensics &amp; Security · 2020</span>
+        <a class="pt" href="https://doi.org/10.1109/TIFS.2019.2916652" target="_blank" rel="noopener">Biometric Face Presentation Attack Detection with Multi-Channel Convolutional Neural Network</a>
+        <div class="auth">A. George, <b>Z. Mostaani</b>, D. Geissenbuhler, O. Nikisins, A. Anjos, S. Marcel</div>
+      </div>
+
+      <div class="pub reveal">
+        <span class="venue">IEEE Trans. Biometrics, Behavior &amp; Identity Science · 2022</span>
+        <a class="pt" href="https://doi.org/10.1109/TBIOM.2022.3143569" target="_blank" rel="noopener">Domain-Specific Adaptation of CNN for Detecting Face Presentation Attacks in NIR</a>
+        <div class="auth">K. Kotwal, S. Bhattacharjee, P. Abbet, <b>Z. Mostaani</b>, et al.</div>
+      </div>
+
+    </div>
+    <p class="pub-foot reveal">Full list — 15+ publications, ~600 citations, h-index 9 — on <a href="https://scholar.google.com/citations?user=t2VMpU8AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a></p>
+  </div>
+</section>
+
+<!-- RESEARCH / EDUCATION -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2>Education &amp; research</h2></div>
+
+    <div class="edu reveal">
+      <div class="edu-row">
+        <div><div class="deg">PhD, Electrical &amp; Electronics Engineering</div><div class="school">EPFL · with Idiap Research Institute</div></div>
+        <div class="yr">2025</div>
+      </div>
+      <div class="edu-row">
+        <div><div class="deg">M.Sc., Electrical &amp; Electronics Engineering</div><div class="school">Özyeğin University</div></div>
+        <div class="yr">2015</div>
+      </div>
+      <div class="edu-row">
+        <div><div class="deg">B.Sc., Electrical Engineering</div><div class="school">University of Tehran</div></div>
+        <div class="yr">2011</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px" class="reveal">
+      <h4 style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:16px">Selected talks &amp; conferences</h4>
+      <div class="talks">
+        <div class="talk"><b>ICASSP 2022</b><span>IEEE Int'l Conf. on Acoustics, Speech &amp; Signal Processing · Singapore</span></div>
+        <div class="talk"><b>INTERSPEECH 2022</b><span>Incheon, Korea</span></div>
+        <div class="talk"><b>INTERSPEECH 2024</b><span>Kos Island, Greece</span></div>
+        <div class="talk"><b>Valais AI Workshop 2022</b><span>Technopôle, Sierre, Switzerland</span></div>
+        <div class="talk"><b>NCCR Summer School 2023</b><span>Grindelwald, Switzerland</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">06</span><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-block reveal">
+        <h4>Languages &amp; tools</h4>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SciPy</span><span class="chip">MATLAB</span><span class="chip">Shell</span><span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <h4>Deep learning &amp; ML</h4>
+        <div class="chips">
+          <span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">scikit-learn</span><span class="chip">CNN / RNN / TCN</span><span class="chip">Transformers &amp; attention</span><span class="chip">Time-series modeling</span><span class="chip">Feature engineering</span><span class="chip">Evaluation &amp; ablation</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <h4>Speech &amp; signals</h4>
+        <div class="chips">
+          <span class="chip">TTS / synthesis evaluation</span><span class="chip">Speech quality (MOS)</span><span class="chip">ASR integration</span><span class="chip">Radar signal processing</span><span class="chip">Physiological signals</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <h4>Systems &amp; MLOps</h4>
+        <div class="chips">
+          <span class="chip">Docker</span><span class="chip">FastAPI / Flask</span><span class="chip">conda / mamba</span><span class="chip">Poetry</span><span class="chip">uv</span><span class="chip">AWS</span><span class="chip">Azure</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <h4>Data &amp; evaluation</h4>
+        <div class="chips">
+          <span class="chip">Dataset design &amp; collection</span><span class="chip">Labeling protocols</span><span class="chip">Data pipelines</span><span class="chip">Human evaluation / A-B testing</span><span class="chip">Matplotlib · Seaborn · Plotly</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <h4>Spoken languages</h4>
+        <div class="chips">
+          <span class="chip">English — fluent</span><span class="chip">French — intermediate</span><span class="chip">Persian — native</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's work together</h2>
+      <p>I'm open to machine-learning and AI scientist roles. The fastest way to reach me is email.</p>
+      <div class="links">
+        <a class="primary" href="mailto:mostaani.zohreh@gmail.com">mostaani.zohreh@gmail.com</a>
+        <a href="https://www.linkedin.com/in/zohreh-mostaani/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=t2VMpU8AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://orcid.org/0000-0001-7369-4857" target="_blank" rel="noopener">ORCID</a>
+        <a href="general-machine-learning-engineer-scientist.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © <span id="yr"></span> Zohreh Mostaani · Switzerland
+    <span class="mono">Built with HTML · hosted free</span>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav background on scroll
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30));
+
+  // mobile menu
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
